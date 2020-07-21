@@ -24,13 +24,19 @@ def get_movie_data(link):
 
     data = {}
 
-    data['title'] = soup.find(attrs={'class': 'title_wrapper'}).find(
+    data['name'] = soup.find(attrs={'class': 'title_wrapper'}).find(
         'h1').text.split('\xa0')[0]
-    data['year'] = soup.find(attrs={'class': 'title_wrapper'}).find(
-        'h1').text.split('\xa0')[1][1:5]
-    data['runtime'] = soup.find(
-        attrs={'class': 'title_wrapper'}).find('time').text.strip()
     data['genres'] = ','.join(list(map(lambda a: a.text, soup.find(
         attrs={'class': 'title_wrapper'}).select('[href*=genres]'))))
+    data['year'] = soup.find(attrs={'class': 'title_wrapper'}).find(
+        'h1').text.split('\xa0')[1][1:5]
+    data['directors'] = ','.join(list(map(lambda a: a.text, soup.find_all(attrs={'class': "credit_summary_item"})[
+        0].find_all('a'))))
+    data['starring'] = ','.join(list(map(lambda a: a.text, soup.find_all(attrs={'class': 'credit_summary_item'})[
+        2].select('[href*=nm]'))))
+    data['runtime'] = soup.find(
+        attrs={'class': 'title_wrapper'}).find('time').text.strip()
+    data['poster'] = soup.find(attrs={'class': 'poster'}).find('img')['src']
+    data['plot'] = soup.find(attrs={'class': 'summary_text'}).text.strip()
 
     return data
