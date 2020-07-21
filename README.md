@@ -6,6 +6,4 @@ Constraint : 0 <= x <=250
 
 To run :
 
-```python main.py <value of x>
-
-```
+`python main.py <value of x>`
