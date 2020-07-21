@@ -1,7 +1,10 @@
+# scraping module
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 
+# scrape the initial links to follow - /title/<title_id>
 def get_movie_links():
 
     html = urlopen('https://www.imdb.com/chart/top/').read()
@@ -17,6 +20,7 @@ def get_movie_links():
     return movie_links
 
 
+# scrape the required data by following the corresponding links
 def get_movie_data(link):
     url = 'https://www.imdb.com'+link
     html = urlopen(url).read()
