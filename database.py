@@ -7,10 +7,10 @@ import os
 # load env variables:
 load_dotenv()
 
-# function to save to DB
+# function to save x movies from IMDB to our DB
 
 
-def save_to_db():
+def save_to_db(x):
 
     db_uri = os.getenv('MONGO_CONN_STRING')
     db = create_connection(db_uri)  # connect to mongodb
@@ -21,11 +21,11 @@ def save_to_db():
 
     # get scraped data and write to DB
     print('Extracting movie info...')
-    X = 10  # change to desired value
+
     count = 0
     for link in movie_links:
         count += 1
-        if count > X:
+        if count > x:
             break
         data = scrape.get_movie_data(link)
         data['rating'] = 0
