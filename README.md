@@ -1,1 +1,3 @@
-Scrape movie info from IMDB and save to MongoDB for the Public Movie Database project.
+# imdb-scraping
+
+Scraping IMDB using bs4 and saving info to MongoDB
