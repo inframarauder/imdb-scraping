@@ -28,8 +28,6 @@ def save_to_db(x):
         if count > x:
             break
         data = scrape.get_movie_data(link)
-        data['rating'] = 0
-        data['reviews'] = []
         db.movies.insert_one(data)
         print(str(count)+'.'+data['name'] + ' written to DB')
 
